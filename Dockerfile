@@ -2,13 +2,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Копируем только нужные файлы
+COPY bot.py .
 COPY requirements.txt .
+
+# Устанавливаем зависимости
 RUN pip install --upgrade pip
-RUN pip install aiogram==3.7.0
-RUN pip install openai==1.3.9
-RUN pip install python-dotenv==0.19.0
-RUN pip install aiohttp==3.8.4
+RUN pip install -r requirements.txt
 
-COPY . .
-
+# Запускаем бота
 CMD ["python", "bot.py"]
